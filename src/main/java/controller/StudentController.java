@@ -15,9 +15,9 @@ public class StudentController {
     private StudentService studentService = new StudentService();
 
     @GET
-    @Path("/")
+    @Path("/?id={id}&fullName={fullName}")
     @Produces(MediaType.APPLICATION_JSON)
-    public List<Student> getAll(){
+    public List<Student> getAll(@PathParam("id") int id, @QueryParam("fullName") String fullName){
         return studentService.getAll();
     }
 
@@ -39,4 +39,20 @@ public class StudentController {
         }
         return validateResult + "\n Thêm mới thất bại";
     }
+
+    @DELETE
+    @Path("/{id}")
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
+    public String deleteOneStudent(@PathParam("id") int id){
+        Student student1 = getOneById(id);
+        if (student1 == null){
+            return "ID không có trong hệ thống. Xóa thông tin sinh viên thất bại";
+        }
+        else{
+            return studentService.removeStudent(id) ? "Xóa thành công" : "Xóa thất bại";
+        }
+    }
+
 }
+

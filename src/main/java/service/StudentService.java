@@ -3,14 +3,15 @@ package service;
 import entity.Student;
 import repository.StudentRepository;
 
+import java.util.Date;
 import java.util.List;
 
 public class StudentService {
 
     private StudentRepository studentRepository = new StudentRepository();
-    public List<Student> getAll(){
+    public List<Student> getAll(String fullName, Date startDate, Date endDate, String gender, String hometown, String className, String major, Float averageMarkMin, Float averageMarkMax){
 
-        return studentRepository.getAll();
+        return studentRepository.getAll(fullName, startDate, endDate, gender, hometown,className, major, averageMarkMin, averageMarkMax);
     }
 
     public Student getOneById(int id) {

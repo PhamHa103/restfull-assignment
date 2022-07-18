@@ -44,6 +44,6 @@ public class Student implements Serializable {
     String gender;
 
     @Column(name = "AVERAGE_MARK", nullable = false)
-    Double averageMark;
+    Float averageMark;
 
 }

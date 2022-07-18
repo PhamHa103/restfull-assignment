@@ -28,6 +28,7 @@ public class StudentController {
         return studentService.getOneById(id);
     }
 
+    //API thêm mới sinh viên
     @POST
     @Path("/")
     @Produces(MediaType.APPLICATION_JSON)
@@ -40,6 +41,7 @@ public class StudentController {
         return validateResult + "\n Thêm mới thất bại";
     }
 
+    //API cập nhật thông tin sinh viên
     @PUT
     @Path("/")
     @Produces(MediaType.APPLICATION_JSON)
@@ -56,6 +58,7 @@ public class StudentController {
         return validateResult + "\n Cập nhật thất bại";
     }
 
+    //API xóa thông tin sinh viên
     @DELETE
     @Path("/{id}")
     @Produces(MediaType.APPLICATION_JSON)

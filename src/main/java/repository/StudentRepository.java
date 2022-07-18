@@ -36,7 +36,19 @@ public class StudentRepository {
             session.save(student);
             session.getTransaction().commit();
             return true;
-        } catch (HibernateException e) {
+        } catch (Exception e) {
+            logger.error(e);
+            return false;
+        }
+    }
+
+    public boolean update(Student student) {
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            session.beginTransaction();
+            session.update(student);
+            session.getTransaction().commit();
+            return true;
+        } catch (Exception e) {
             logger.error(e);
             return false;
         }
@@ -50,7 +62,7 @@ public class StudentRepository {
             session.delete(student);
             session.getTransaction().commit();
             return true;
-        } catch (HibernateException e) {
+        } catch (Exception e) {
             session.getTransaction().rollback();
             logger.error(e);
         } finally {
@@ -58,5 +70,6 @@ public class StudentRepository {
         }
         return false;
     }
+
 
 }

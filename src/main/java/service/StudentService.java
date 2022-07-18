@@ -21,6 +21,10 @@ public class StudentService {
         return studentRepository.insert(student);
     }
 
+    public boolean update(Student student) {
+        return studentRepository.update(student);
+    }
+
     public boolean removeStudent(int id) {
         return studentRepository.removeStudent(id);
     }

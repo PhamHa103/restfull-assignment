@@ -40,19 +40,40 @@ public class StudentController {
         return validateResult + "\n Thêm mới thất bại";
     }
 
+    @PUT
+    @Path("/")
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
+    public String updateNewStudent(Student student) {
+        Student student1 = getOneById(student.getId());
+        if (student1 == null){
+            return "ID không có trong hệ thống. Cập nhật thông tin sinh viên thất bại";
+        }
+        String validateResult = StudentUtil.validateInputData(student);
+        if (validateResult == null) {
+            return studentService.update(student) ? "Cập nhật thành công" : "Cập nhật thất bại";
+        }
+        return validateResult + "\n Cập nhật thất bại";
+    }
+
     @DELETE
     @Path("/{id}")
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     public String deleteOneStudent(@PathParam("id") int id){
+        String validateById = validateById(id);
+        if (validateById == null){
+            return studentService.removeStudent(id) ? "Xóa thành công" : "Xóa thất bại";
+        }
+        return validateById;
+    }
+
+    public String validateById(int id){
         Student student1 = getOneById(id);
         if (student1 == null){
             return "ID không có trong hệ thống. Xóa thông tin sinh viên thất bại";
         }
-        else{
-            return studentService.removeStudent(id) ? "Xóa thành công" : "Xóa thất bại";
-        }
+        return null;
     }
-
 }
 

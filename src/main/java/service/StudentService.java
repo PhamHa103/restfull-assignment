@@ -29,4 +29,8 @@ public class StudentService {
     public boolean removeStudent(int id) {
         return studentRepository.removeStudent(id);
     }
+
+    public List<Student> getListBirthdayDate(int month, int day) {
+        return studentRepository.getListBirthdayDate(month, day);
+    }
 }

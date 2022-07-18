@@ -31,10 +31,6 @@ public class DateUtil {
         LocalDate localDate = LocalDateTime.ofInstant(instant, ZoneId.systemDefault()).toLocalDate();
         return localDate;
     }
-    public static Integer getYear(Date date){
-        String dateToString = date.toString();
-        return Integer.parseInt(dateToString.substring(dateToString.length() - 4));
-    }
 
     public static long calculateAgeByTotalDays(LocalDate birthDate) {
         LocalDate currentDate = LocalDate.now();

@@ -8,6 +8,7 @@ import util.StudentUtil;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 
+import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -17,6 +18,18 @@ public class StudentController {
 
     private StudentService studentService = new StudentService();
 
+    //API Chúc mừng sinh nhật sinh viên
+    @GET
+    @Path("/birthday")
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
+    public List<Student> getListBirthdayDate(){
+        int month = new Date().toInstant().atZone(ZoneId.systemDefault()).toLocalDate().getMonthValue();
+        int day = new Date().toInstant().atZone(ZoneId.systemDefault()).toLocalDate().getDayOfMonth();
+        return studentService.getListBirthdayDate(month, day);
+    }
+
+    //API Liệt kê danh sách sinh viên theo tiêu chí (Tìm kiếm sinh viên)
     @GET
     @Path("/")
     @Produces(MediaType.APPLICATION_JSON)

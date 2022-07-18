@@ -2,8 +2,6 @@ package util;
 
 import entity.Student;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import static util.DateUtil.*;
 
